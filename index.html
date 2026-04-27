@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>イチバンデシ — 一人親方の仕事を、もっとスマートに。</title>
+<meta name="description" content="見積・請求・顧客管理をスマホひとつで完結。一人親方・小規模建設業向けのシンプルな仕事管理アプリ。30日間無料。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:     #0D120E;
+    --bg2:    #101610;
+    --card:   #141C14;
+    --card2:  #1A241A;
+    --accent: #4CAF65;
+    --white:  #EDF2EE;
+    --muted:  rgba(237,242,238,0.45);
+    --red:    #C0392B;
+    --border: rgba(76,175,101,0.18);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--white); overflow-x:hidden; }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:16px 5vw; display:flex; justify-content:space-between; align-items:center;
+    background:rgba(13,18,14,0.93); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-logo { font-weight:900; font-size:19px; letter-spacing:0.06em; color:var(--white); text-decoration:none; }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:28px; align-items:center; list-style:none; }
+  .nav-links a { color:var(--muted); text-decoration:none; font-size:13px; font-weight:500; transition:color 0.15s; }
+  .nav-links a:hover { color:var(--accent); }
+  .nav-cta { background:var(--accent) !important; color:#0D120E !important; font-weight:700 !important; padding:10px 22px; font-size:13px !important; }
+  @media(max-width:640px){ .nav-links { display:none; } }
+
+  /* HERO */
+  .hero {
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    padding:120px 5vw 80px; position:relative; overflow:hidden;
+  }
+  .hero::before {
+    content:''; position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(46,107,62,0.12) 0%, transparent 70%),
+      repeating-linear-gradient(0deg,transparent,transparent 64px,rgba(76,175,101,0.03) 64px,rgba(76,175,101,0.03) 65px),
+      repeating-linear-gradient(90deg,transparent,transparent 64px,rgba(76,175,101,0.025) 64px,rgba(76,175,101,0.025) 65px);
+    z-index:0;
+  }
+  .hero-bg-text {
+    position:absolute; right:-1vw; top:50%; transform:translateY(-50%);
+    font-family:'Bebas Neue',sans-serif; font-size:clamp(160px,25vw,380px);
+    color:rgba(46,107,62,0.07); line-height:1; pointer-events:none; z-index:0;
+  }
+  .hero-label {
+    position:relative; z-index:1; font-size:11px; font-weight:700;
+    letter-spacing:0.38em; color:var(--accent); text-transform:uppercase;
+    margin-bottom:22px; display:flex; align-items:center; gap:12px;
+  }
+  .hero-label::before { content:''; display:block; width:28px; height:2px; background:var(--accent); }
+  .hero-title {
+    position:relative; z-index:1; font-weight:900;
+    font-size:clamp(40px,6.5vw,88px); line-height:1.06;
+    letter-spacing:-0.02em; margin-bottom:16px;
+  }
+  .hero-title .ac { color:var(--accent); }
+  .hero-sub {
+    position:relative; z-index:1; font-size:clamp(14px,1.8vw,18px);
+    color:var(--muted); line-height:1.9; margin-bottom:48px; max-width:500px;
+  }
+  .hero-cta-wrap { position:relative; z-index:1; display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
+  .btn-main {
+    background:var(--accent); color:#0D120E; font-weight:700; font-size:15px;
+    padding:16px 36px; border:none; cursor:pointer; letter-spacing:0.05em;
+    text-decoration:none; display:inline-block;
+    clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+    transition:transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-main:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(76,175,101,0.3); }
+  .btn-text { color:var(--muted); font-size:13px; font-weight:500; text-decoration:none; display:flex; align-items:center; gap:8px; transition:color 0.15s; }
+  .btn-text:hover { color:var(--accent); }
+  .hero-stats {
+    position:relative; z-index:1; margin-top:60px; display:flex; gap:40px; flex-wrap:wrap;
+    padding-top:32px; border-top:1px solid var(--border);
+  }
+  .stat { display:flex; flex-direction:column; gap:4px; }
+  .stat-n { font-family:'Bebas Neue',sans-serif; font-size:38px; color:var(--accent); line-height:1; letter-spacing:0.05em; }
+  .stat-l { font-size:11px; color:rgba(237,242,238,0.35); letter-spacing:0.12em; }
+
+  /* COMMON */
+  .sec-eye { font-size:11px; font-weight:700; letter-spacing:0.4em; color:var(--accent); text-transform:uppercase; margin-bottom:18px; }
+  .sec-title { font-weight:900; font-size:clamp(26px,3.8vw,50px); line-height:1.2; margin-bottom:52px; }
+
+  /* PAIN */
+  .pain { padding:100px 5vw; background:var(--bg2); }
+  .pain-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:2px; }
+  .p-card { background:var(--card); padding:32px 26px; position:relative; overflow:hidden; transition:background 0.2s; }
+  .p-card:hover { background:var(--card2); }
+  .p-card::before { content:''; position:absolute; top:0; left:0; width:3px; height:0; background:var(--accent); transition:height 0.3s; }
+  .p-card:hover::before { height:100%; }
+  .p-icon { font-size:26px; margin-bottom:14px; }
+  .p-title { font-weight:700; font-size:15px; margin-bottom:8px; line-height:1.5; }
+  .p-desc { font-size:12px; color:var(--muted); line-height:1.9; }
+
+  /* SOLUTION */
+  .solution { padding:100px 5vw; }
+  .sol-inner { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; max-width:1080px; }
+  @media(max-width:768px){ .sol-inner { grid-template-columns:1fr; gap:48px; } }
+  .mock-ui { background:var(--card); border:1px solid var(--border); padding:26px; display:flex; flex-direction:column; gap:11px; }
+  .mock-hdr { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .m-dot { width:9px; height:9px; border-radius:50%; }
+  .m-row { background:#1A2419; border-radius:3px; padding:12px 14px; display:flex; align-items:center; gap:11px; font-size:12px; }
+  .m-tag { font-size:9px; font-weight:700; padding:3px 9px; border-radius:2px; letter-spacing:0.06em; flex-shrink:0; }
+  .t-g { background:rgba(76,175,101,0.15); color:var(--accent); }
+  .t-y { background:rgba(255,193,7,0.15); color:#FFC107; }
+  .t-gr { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.35); }
+  .m-amt { margin-left:auto; font-family:'Bebas Neue',sans-serif; font-size:17px; color:var(--accent); letter-spacing:0.05em; }
+  .mock-total { margin-top:12px; padding-top:14px; border-top:1px solid rgba(76,175,101,0.12); }
+  .mock-total-l { font-size:10px; color:rgba(237,242,238,0.28); margin-bottom:4px; }
+  .mock-total-n { font-family:'Bebas Neue',sans-serif; font-size:34px; color:var(--accent); letter-spacing:0.05em; }
+  .feat-list { display:flex; flex-direction:column; gap:30px; }
+  .feat { display:flex; gap:16px; align-items:flex-start; }
+  .feat-n { font-family:'Bebas Neue',sans-serif; font-size:38px; color:rgba(76,175,101,0.18); line-height:1; flex-shrink:0; width:42px; }
+  .feat-b h3 { font-weight:700; font-size:17px; margin-bottom:7px; }
+  .feat-b p { font-size:12px; color:var(--muted); line-height:1.9; }
+
+  /* SETUP */
+  .setup { padding:100px 5vw; background:var(--bg2); }
+  .setup-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:2px; margin-bottom:44px; }
+  .price-box { border:1px solid var(--border); background:var(--card); padding:40px 36px; position:relative; overflow:hidden; max-width:620px; }
+  .p-ribbon { position:absolute; top:0; right:0; background:var(--red); color:#fff; font-size:10px; font-weight:700; letter-spacing:0.18em; padding:8px 18px; }
+  .p-row { display:flex; align-items:flex-end; gap:22px; flex-wrap:wrap; margin-bottom:20px; }
+  .p-old-l { font-size:10px; color:rgba(237,242,238,0.3); letter-spacing:0.1em; margin-bottom:4px; }
+  .p-old { font-family:'Bebas Neue',sans-serif; font-size:46px; color:rgba(237,242,238,0.2); text-decoration:line-through; line-height:1; }
+  .p-arr { font-size:22px; color:rgba(237,242,238,0.2); padding-bottom:6px; }
+  .p-new-l { font-size:10px; color:var(--accent); font-weight:700; letter-spacing:0.1em; margin-bottom:4px; }
+  .p-new { font-family:'Bebas Neue',sans-serif; font-size:78px; color:var(--accent); line-height:1; }
+  .p-note { font-size:13px; color:var(--muted); line-height:1.9; }
+
+  /* PRICING */
+  .pricing { padding:100px 5vw; }
+  .plan-wrap { margin-top:52px; max-width:460px; }
+  .plan-card { background:var(--card); border:1px solid var(--border); padding:40px 36px; }
+  .plan-badge { display:inline-block; font-size:10px; font-weight:700; letter-spacing:0.2em; padding:4px 12px; background:rgba(76,175,101,0.12); color:var(--accent); margin-bottom:12px; }
+  .plan-sub { font-size:11px; color:var(--muted); margin-bottom:16px; line-height:1.7; }
+  .plan-name { font-weight:900; font-size:22px; margin-bottom:6px; }
+  .plan-price { font-family:'Bebas Neue',sans-serif; font-size:72px; line-height:1; margin-bottom:4px; letter-spacing:0.02em; color:var(--accent); }
+  .plan-unit { font-size:13px; color:var(--muted); margin-bottom:28px; }
+  .plan-feats { list-style:none; display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
+  .plan-feats li { font-size:13px; display:flex; align-items:flex-start; gap:10px; line-height:1.5; }
+  .plan-feats li::before { content:'✓'; font-weight:700; flex-shrink:0; color:var(--accent); margin-top:1px; }
+  .plan-cta { display:block; text-align:center; padding:15px; font-weight:700; font-size:14px; letter-spacing:0.08em; text-decoration:none; background:var(--accent); color:#0D120E; transition:opacity 0.15s; }
+  .plan-cta:hover { opacity:0.85; }
+  .plan-note { margin-top:16px; font-size:11px; color:rgba(237,242,238,0.3); text-align:center; line-height:1.7; }
+
+  /* REFERRAL */
+  .referral { padding:100px 5vw; }
+  .ref-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:2px; max-width:680px; margin-bottom:40px; }
+  .ref-box { border:1px solid rgba(76,175,101,0.3); background:var(--card); padding:32px 28px; max-width:620px; }
+
+  /* FAQ */
+  .faq { padding:100px 5vw; max-width:740px; background:var(--bg2); }
+  .faq-item { border-bottom:1px solid rgba(76,175,101,0.1); padding:26px 0; }
+  .faq-q { font-weight:700; font-size:15px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:flex-start; gap:16px; }
+  .faq-q::after { content:'+'; font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--accent); flex-shrink:0; line-height:1; }
+  .faq-a { font-size:13px; color:var(--muted); line-height:1.9; }
+
+  /* CTA */
+  .cta-section { padding:100px 5vw; text-align:center; position:relative; overflow:hidden; background:var(--bg); }
+  .cta-section::before {
+    content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:700px; height:700px; background:radial-gradient(circle,rgba(46,107,62,0.12) 0%,transparent 70%); pointer-events:none;
+  }
+  .cta-section h2 { font-weight:900; font-size:clamp(28px,4vw,52px); line-height:1.2; margin-bottom:16px; position:relative; }
+  .cta-section p { font-size:14px; color:var(--muted); margin-bottom:40px; position:relative; line-height:1.9; }
+
+  footer { border-top:1px solid rgba(76,175,101,0.08); padding:36px 5vw; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer p { font-size:12px; color:rgba(237,242,238,0.22); }
+
+  .fu { opacity:0; transform:translateY(26px); transition:opacity 0.65s,transform 0.65s; }
+  .fu.vis { opacity:1; transform:translateY(0); }
+  .d1 { transition-delay:0.1s; } .d2 { transition-delay:0.2s; } .d3 { transition-delay:0.3s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">イチバン<span>デシ</span></a>
+  <ul class="nav-links">
+    <li><a href="#pain">こんな悩みない？</a></li>
+    <li><a href="#solution">できること</a></li>
+    <li><a href="#setup">初期設定代行</a></li>
+    <li><a href="#pricing">料金</a></li>
+    <li><a href="#cta" class="nav-cta">無料で始める</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">一番弟子</div>
+  <div class="hero-label">建設業 一人親方・小規模事業者向け</div>
+  <h1 class="hero-title">現場の仕事を、<br><span class="ac">スマートに。</span><br>稼ぎを、もっと増やす。</h1>
+  <p class="hero-sub">見積・請求・顧客管理をスマホひとつで完結。<br>紙とエクセルの手間をゼロにして、現場に集中できる時間をつくる。</p>
+  <div class="hero-cta-wrap">
+    <a href="#cta" class="btn-main">今すぐ無料で試す（30日間）</a>
+    <a href="howto.html" class="btn-text"><span>使い方を見る</span><span>→</span></a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-n">30日</span><span class="stat-l">無料トライアル</span></div>
+    <div class="stat"><span class="stat-n">5分</span><span class="stat-l">導入時間の目安</span></div>
+    <div class="stat"><span class="stat-n">¥0</span><span class="stat-l">初期費用（期間限定）</span></div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain" id="pain">
+  <div class="sec-eye fu">こんな悩み、ないですか？</div>
+  <h2 class="sec-title fu d1">一人でやると、<br>事務仕事が<span style="color:var(--accent)">山積み</span>になる。</h2>
+  <div class="pain-grid">
+    <div class="p-card fu"><div class="p-icon">📄</div><div class="p-title">見積書・請求書を毎回Excelで手打ちしている</div><p class="p-desc">単価の入力ミス、送り忘れ、バージョン管理の混乱。現場から帰って深夜に書類作成というループから抜け出せない。</p></div>
+    <div class="p-card fu d1"><div class="p-icon">💸</div><div class="p-title">入金確認が遅れて資金繰りが不安になる</div><p class="p-desc">どの現場の請求がいつ払われるか把握できていない。確認の電話をかけるのも気が引ける。</p></div>
+    <div class="p-card fu d2"><div class="p-icon">📋</div><div class="p-title">現場ごとの材料費・労務費が管理できていない</div><p class="p-desc">終わってみれば赤字だったということも。どこで利益が出てどこで損しているか、数字で見えていない。</p></div>
+    <div class="p-card fu d3"><div class="p-icon">🤝</div><div class="p-title">取引先から「早く書類ちょうだい」と言われる</div><p class="p-desc">書類のやりとりに時間がかかると、次の仕事につながらない。信頼を積み重ねるチャンスを逃している。</p></div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution" id="solution">
+  <div class="sec-eye fu">できること</div>
+  <h2 class="sec-title fu d1">書類仕事を<span style="color:var(--accent)">10分</span>で終わらせる。<br>現場に戻れる。</h2>
+  <div class="sol-inner">
+    <div class="mock-ui fu">
+      <div class="mock-hdr">
+        <div class="m-dot" style="background:#4ADE80"></div>
+        <div class="m-dot" style="background:#FFC107"></div>
+        <div class="m-dot" style="background:#F87171"></div>
+        <span style="font-size:11px;color:rgba(237,242,238,0.28);margin-left:8px">案件一覧</span>
+      </div>
+      <div class="m-row"><span class="m-tag t-g">入金済</span><span style="flex:1">外壁塗装工事 / 田中様邸</span><span class="m-amt">¥380,000</span></div>
+      <div class="m-row"><span class="m-tag t-y">請求中</span><span style="flex:1">内装リフォーム / 山本商店</span><span class="m-amt">¥145,000</span></div>
+      <div class="m-row"><span class="m-tag t-gr">見積中</span><span style="flex:1">屋根修繕工事 / 佐藤様邸</span><span class="m-amt">¥220,000</span></div>
+      <div class="m-row"><span class="m-tag t-y">請求中</span><span style="flex:1">電気配線工事 / ㈱〇〇</span><span class="m-amt">¥88,000</span></div>
+      <div class="mock-total"><div class="mock-total-l">今月の売上合計</div><div class="mock-total-n">¥833,000</div></div>
+    </div>
+    <div class="feat-list">
+      <div class="feat fu"><span class="feat-n">01</span><div class="feat-b"><h3>見積・請求書をスマホで即作成</h3><p>登録済の単価リストから選ぶだけ。会社印入りのPDFをその場で送付できる。Excelも手書きも不要。</p></div></div>
+      <div class="feat fu d1"><span class="feat-n">02</span><div class="feat-b"><h3>顧客・取引先を一元管理</h3><p>顧客情報・過去の取引履歴・連絡先をクラウドで管理。スマホからすぐアクセスできる。</p></div></div>
+      <div class="feat fu d2"><span class="feat-n">03</span><div class="feat-b"><h3>単価マスタで入力ミスをゼロに</h3><p>よく使う材料・工事・外注費を単価マスタに登録。選ぶだけで金額が自動入力される。</p></div></div>
+      <div class="feat fu d3"><span class="feat-n">04</span><div class="feat-b"><h3>印鑑入りPDFをその場で送付</h3><p>会社印・ロゴ入りの見積書・請求書をPDF出力。LINEやメールでその場で送れる。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP -->
+<section class="setup" id="setup">
+  <div class="sec-eye fu">初期設定代行</div>
+  <h2 class="sec-title fu d1">設定は、<span style="color:var(--accent)">全部やります。</span><br>届いたらすぐ使える。</h2>
+  <p style="font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:44px;max-width:580px" class="fu d2">「アプリの設定が難しそう」で止まらせない。単価リスト・顧客情報の登録まで、こちらで全部セットアップします。親方は現場に集中するだけ。</p>
+  <div class="setup-grid">
+    <div class="p-card fu" style="padding:28px 24px"><div class="p-icon">🔧</div><div class="p-title">よく使う単価を登録</div><p class="p-desc">材料・労務・外注など現場で使う単価を事前にセット。送っていただいたリストをそのまま入力します。</p></div>
+    <div class="p-card fu d1" style="padding:28px 24px"><div class="p-icon">🏢</div><div class="p-title">顧客・取引先を登録</div><p class="p-desc">元請け・個人客の情報をまとめてインポート。ExcelでもメモでもOK。</p></div>
+    <div class="p-card fu d2" style="padding:28px 24px"><div class="p-icon">📮</div><div class="p-title">会社印・ロゴの設定</div><p class="p-desc">見積書・請求書にすぐ使えるよう印鑑・ロゴを設定。書類がプロの仕上がりになります。</p></div>
+  </div>
+  <div class="price-box fu">
+    <div class="p-ribbon">期間限定・先着20名</div>
+    <div class="p-row">
+      <div><div class="p-old-l">通常価格</div><div class="p-old">¥30,000</div></div>
+      <div class="p-arr">→</div>
+      <div><div class="p-new-l">今だけ</div><div class="p-new">¥0</div></div>
+    </div>
+    <p class="p-note">先着20名様限定で、初期設定代行（通常¥30,000）を完全無料でご提供します。<br>枠がなくなり次第、通常価格に戻ります。</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="sec-eye fu">月額プラン</div>
+  <h2 class="sec-title fu d1">月<span style="color:var(--accent)">1件</span>余計に取れれば、<br>それ以上の価値がある。</h2>
+  <div class="plan-wrap fu d2">
+    <div class="plan-card">
+      <div class="plan-badge">STANDARD</div>
+      <p class="plan-sub">顧客登録・単価登録・見積作成・請求書作成の4機能に特化したプランです。</p>
+      <div class="plan-name">スタンダード</div>
+      <div class="plan-price">¥2,980</div>
+      <div class="plan-unit">/ 月（税込）</div>
+      <ul class="plan-feats">
+        <li>顧客管理</li>
+        <li>単価登録（品目マスタ）</li>
+        <li>見積書の作成・PDF出力</li>
+        <li>請求書の作成・PDF出力</li>
+      </ul>
+      <a href="#cta" class="plan-cta">30日間無料で試す</a>
+      <p class="plan-note">クレジットカード不要。無料期間終了後に自動課金はありません。</p>
+    </div>
+  </div>
+</section>
+
+<!-- REFERRAL -->
+<section class="referral" id="referral">
+  <div class="sec-eye fu">紹介特典</div>
+  <h2 class="sec-title fu d1"><span style="color:var(--accent)">仲間を紹介</span>すると、<br>初期費用が無料に。</h2>
+  <p style="font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:44px;max-width:560px" class="fu d2">新規ユーザーをご紹介いただくと、通常¥30,000の初期設定代行が無料になります。</p>
+  <div class="ref-steps">
+    <div class="p-card fu" style="padding:28px 24px;text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;margin-bottom:10px">STEP 1</div><div class="p-title" style="font-size:14px">仲間に紹介する</div><p class="p-desc">知り合いの一人親方にイチバンデシを紹介してください</p></div>
+    <div class="p-card fu d1" style="padding:28px 24px;text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;margin-bottom:10px">STEP 2</div><div class="p-title" style="font-size:14px">紹介された方が登録</div><p class="p-desc">紹介された方がイチバンデシに登録・ご利用開始</p></div>
+    <div class="p-card fu d2" style="padding:28px 24px;text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;margin-bottom:10px">STEP 3</div><div class="p-title" style="font-size:14px">初期費用が無料に</div><p class="p-desc">あなたの初期設定代行（¥30,000）が無料になります</p></div>
+  </div>
+  <div class="ref-box fu">
+    <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <div style="font-size:36px">🤝</div>
+      <div>
+        <div style="font-weight:900;font-size:17px;margin-bottom:8px">紹介1名で初期費用 <span style="color:var(--accent)">¥30,000 → ¥0</span></div>
+        <p class="p-note" style="margin:0">紹介に上限はありません。仲間が増えるほど、お互いにトクします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="sec-eye fu">よくある質問</div>
+  <h2 class="sec-title fu d1" style="font-size:clamp(22px,3vw,38px)">気になること、全部答えます。</h2>
+  <div class="faq-item fu"><div class="faq-q">パソコンが苦手でも使えますか？</div><div class="faq-a">はい、スマホだけで全ての操作ができます。初期設定代行をご利用いただければ、届いたその日から使えます。</div></div>
+  <div class="faq-item fu d1"><div class="faq-q">初期設定代行に必要なものは？</div><div class="faq-a">よく使う単価一覧（ExcelやメモでOK）、顧客情報のリスト、会社のロゴ・印鑑データをお送りいただければ対応します。ない場合もご相談ください。</div></div>
+  <div class="faq-item fu d2"><div class="faq-q">30日間の無料期間後はどうなりますか？</div><div class="faq-a">自動的に有料プランへ移行することはありません。トライアル終了後にご自身でプランを選択いただきます。データはそのまま保持されます。</div></div>
+  <div class="faq-item fu d3"><div class="faq-q">インボイス制度に対応していますか？</div><div class="faq-a">適格請求書（インボイス）の発行に対応しています。登録番号を設定しておけば、自動で請求書に印字されます。</div></div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <h2 class="fu">今夜、書類仕事を<br><span style="color:var(--accent)">終わらせよう。</span></h2>
+  <p class="fu d1">30日間無料。初期設定代行も今だけ無料（先着20名）。<br>クレジットカード不要。いつでも解約OK。</p>
+  <a href="https://docs.google.com/forms/d/1yw_eZrSnN0dSrpEjpmfj8e0ZGV6s9jmnpugvD82rV-E/viewform" target="_blank" class="btn-main fu d2" style="font-size:16px;padding:20px 56px">無料で申し込む（30日間）</a>
+  <p class="fu d3" style="margin-top:16px;font-size:11px;color:rgba(237,242,238,0.25)">送信後、担当者より1営業日以内にご連絡いたします</p>
+</section>
+
+<footer>
+  <a href="#" class="nav-logo" style="font-size:16px">イチバン<span>デシ</span></a>
+  <p>© 2025 SANPO ENGINE. イチバンデシ — 一人親方のための仕事管理アプリ.</p>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
