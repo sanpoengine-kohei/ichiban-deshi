@@ -285,7 +285,8 @@
 <section class="pricing" id="pricing">
   <div class="sec-eye fu">月額プラン</div>
   <h2 class="sec-title fu d1">月<span style="color:var(--accent)">1件</span>余計に取れれば、<br>それ以上の価値がある。</h2>
-  <div class="plan-wrap fu d2">
+  <div class="fu d2" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;max-width:860px;margin-top:52px">
+    <!-- スタンダード -->
     <div class="plan-card">
       <div class="plan-badge">STANDARD</div>
       <p class="plan-sub">顧客登録・単価登録・見積作成・請求書作成の4機能に特化したプランです。</p>
@@ -301,6 +302,25 @@
       <a href="form.html" class="plan-cta">30日間無料で試す</a>
       <p class="plan-note">クレジットカード不要。無料期間終了後に自動課金はありません。</p>
     </div>
+    <!-- PRO カミングスーン -->
+    <a href="coming-soon.html" style="display:flex;flex-direction:column;background:var(--card2);border:1px solid var(--border);padding:40px 36px;text-decoration:none;transition:border-color 0.2s;position:relative;overflow:hidden" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.4"></div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(76,175,101,0.1);border:1px solid rgba(76,175,101,0.25);padding:6px 14px;font-size:10px;font-weight:700;letter-spacing:0.25em;color:var(--accent);margin-bottom:20px;width:fit-content">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.5s infinite"></span>
+        COMING SOON
+      </div>
+      <div style="font-weight:900;font-size:22px;color:var(--white);margin-bottom:6px">PRO</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1;color:rgba(76,175,101,0.25);margin-bottom:28px;letter-spacing:0.02em">——</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:auto">
+        <li style="font-size:13px;display:flex;align-items:flex-start;gap:10px;color:var(--muted)"><span style="color:var(--accent);flex-shrink:0">✓</span>スタンダードの全機能</li>
+        <li style="font-size:13px;display:flex;align-items:flex-start;gap:10px;color:var(--muted)"><span style="color:rgba(76,175,101,0.4);flex-shrink:0">◎</span>日報作成</li>
+        <li style="font-size:13px;display:flex;align-items:flex-start;gap:10px;color:var(--muted)"><span style="color:rgba(76,175,101,0.4);flex-shrink:0">◎</span>写真台帳</li>
+      </ul>
+      <div style="margin-top:32px;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:12px;color:var(--muted)">詳しく見る</span>
+        <span style="color:var(--accent);font-size:20px">→</span>
+      </div>
+    </a>
   </div>
 </section>
 
@@ -308,18 +328,18 @@
 <section class="referral" id="referral">
   <div class="sec-eye fu">紹介特典</div>
   <h2 class="sec-title fu d1"><span style="color:var(--accent)">仲間を紹介</span>すると、<br>初期費用が無料に。</h2>
-  <p style="font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:44px;max-width:560px" class="fu d2">新規ユーザーをご紹介いただくと、通常¥30,000の初期設定代行が無料になります。</p>
+  <p style="font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:44px;max-width:560px" class="fu d2">新規ユーザーをご紹介いただくと、翌月の月額（¥2,980）が無料になります。紹介が増えるほど、ずっとおトクに使い続けられます。</p>
   <div class="ref-steps">
     <div class="p-card fu" style="padding:28px 24px;text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;margin-bottom:10px">STEP 1</div><div class="p-title" style="font-size:14px">仲間に紹介する</div><p class="p-desc">知り合いの一人親方にイチバンデシを紹介してください</p></div>
     <div class="p-card fu d1" style="padding:28px 24px;text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;margin-bottom:10px">STEP 2</div><div class="p-title" style="font-size:14px">紹介された方が登録</div><p class="p-desc">紹介された方がイチバンデシに登録・ご利用開始</p></div>
-    <div class="p-card fu d2" style="padding:28px 24px;text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;margin-bottom:10px">STEP 3</div><div class="p-title" style="font-size:14px">初期費用が無料に</div><p class="p-desc">あなたの初期設定代行（¥30,000）が無料になります</p></div>
+    <div class="p-card fu d2" style="padding:28px 24px;text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;margin-bottom:10px">STEP 3</div><div class="p-title" style="font-size:14px">翌月が無料に</div><p class="p-desc">紹介された方が利用開始した翌月、あなたの月額¥2,980が無料になります</p></div>
   </div>
   <div class="ref-box fu">
     <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
       <div style="font-size:36px">🤝</div>
       <div>
-        <div style="font-weight:900;font-size:17px;margin-bottom:8px">紹介1名で初期費用 <span style="color:var(--accent)">¥30,000 → ¥0</span></div>
-        <p class="p-note" style="margin:0">紹介に上限はありません。仲間が増えるほど、お互いにトクします。</p>
+        <div style="font-weight:900;font-size:17px;margin-bottom:8px">紹介1名で月額が <span style="color:var(--accent)">1ヶ月無料</span></div>
+        <p class="p-note" style="margin:0">最大3ヶ月まで無料になります。2名紹介で2ヶ月無料、3名紹介で3ヶ月無料。</p>
       </div>
     </div>
   </div>
