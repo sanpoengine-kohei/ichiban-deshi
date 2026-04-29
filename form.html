@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>無料で申し込む | イチバンデシ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#F2F4F2; --bg2:#E8EDE8; --white:#FFFFFF;
+    --accent:#2A7A45; --accent2:#E8F5EC;
+    --text:#1A2A1F; --muted:#6B7F70;
+    --red:#C0392B; --border:#C8D9CC;
+    --shadow:rgba(42,122,69,0.10);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:0 5vw; height:64px;
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--white); border-bottom:1px solid var(--border);
+    box-shadow:0 1px 8px rgba(0,0,0,0.06);
+  }
+  .nav-logo { font-weight:900; font-size:26px; letter-spacing:0.05em; color:var(--text); text-decoration:none; }
+  .nav-logo span { color:var(--accent); }
+  .nav-back { color:var(--muted); font-size:13px; text-decoration:none; display:flex; align-items:center; gap:6px; transition:color 0.15s; }
+  .nav-back:hover { color:var(--accent); }
+
+  .hero {
+    padding:100px 5vw 48px; text-align:center;
+  }
+  .hero-eye {
+    font-size:11px; font-weight:700; letter-spacing:0.4em;
+    color:var(--accent); text-transform:uppercase; margin-bottom:14px;
+  }
+  .hero h1 {
+    font-weight:900; font-size:clamp(26px,4vw,42px);
+    line-height:1.25; margin-bottom:12px; color:var(--text);
+  }
+  .hero h1 span { color:var(--accent); }
+  .hero p { font-size:14px; color:var(--muted); line-height:1.9; }
+
+  .benefits {
+    display:flex; justify-content:center; flex-wrap:wrap; gap:10px;
+    padding:0 5vw 48px; max-width:760px; margin:0 auto;
+  }
+  .ben-item {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:6px; padding:12px 18px;
+    display:flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:500;
+  }
+  .ben-item span { color:var(--accent); font-weight:700; }
+
+  .form-wrap { max-width:600px; margin:0 auto; padding:0 5vw 100px; }
+
+  form { display:flex; flex-direction:column; gap:20px; }
+  .f-group { display:flex; flex-direction:column; gap:7px; }
+  .f-label { font-size:12px; font-weight:700; color:var(--muted); letter-spacing:0.05em; }
+  .f-req { font-size:10px; background:var(--red); color:#fff; padding:2px 7px; border-radius:2px; margin-left:6px; }
+  .f-input {
+    background:var(--white); border:1px solid var(--border);
+    border-radius:6px; color:var(--text);
+    font-family:'Noto Sans JP',sans-serif;
+    font-size:15px; padding:14px 16px; outline:none;
+    transition:border-color 0.2s, box-shadow 0.2s; width:100%;
+  }
+  .f-input::placeholder { color:rgba(107,127,112,0.5); }
+  .f-input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(42,122,69,0.1); }
+  .f-select {
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%232A7A45' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 14px center;
+    padding-right:36px; cursor:pointer;
+  }
+  .f-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:480px){ .f-row { grid-template-columns:1fr; } }
+
+  .f-check-group { display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+  .f-check, .f-radio {
+    display:flex; align-items:center; gap:8px; cursor:pointer;
+    font-size:13px; color:var(--muted);
+    padding:9px 14px; background:var(--white);
+    border:1px solid var(--border); border-radius:6px;
+    transition:border-color 0.15s, color 0.15s; user-select:none;
+  }
+  .f-check:hover, .f-radio:hover { border-color:var(--accent); color:var(--text); }
+  .f-check input, .f-radio input { accent-color:var(--accent); width:14px; height:14px; }
+
+  .f-divider { border:none; border-top:1px solid var(--border); margin:4px 0; }
+
+  .btn-submit {
+    background:var(--accent); color:#fff;
+    font-family:'Noto Sans JP',sans-serif;
+    font-weight:700; font-size:16px; padding:18px;
+    border:none; cursor:pointer; letter-spacing:0.06em;
+    border-radius:6px;
+    transition:background 0.15s, transform 0.15s;
+    box-shadow:0 4px 14px var(--shadow);
+    width:100%;
+  }
+  .btn-submit:hover { background:#3A9B58; transform:translateY(-1px); }
+
+  .form-note { text-align:center; font-size:12px; color:var(--muted); line-height:1.8; }
+
+  footer {
+    background:var(--text); padding:32px 5vw;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+  }
+  .footer-logo { font-weight:900; font-size:17px; letter-spacing:0.05em; color:#fff; text-decoration:none; }
+  .footer-logo span { color:var(--accent); }
+  footer p { font-size:12px; color:rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">イチバン<span>デシ</span></a>
+  <a href="index.html" class="nav-back">← トップに戻る</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-eye">無料申し込み</div>
+  <h1>30日間、<span>無料で</span>試してください。</h1>
+  <p>送信後、担当者より1営業日以内にご連絡します。</p>
+</section>
+
+<div class="benefits">
+  <div class="ben-item"><span>✓</span>初期費用ゼロ</div>
+  <div class="ben-item"><span>✓</span>30日間無料トライアル</div>
+  <div class="ben-item"><span>✓</span>クレジットカード不要</div>
+  <div class="ben-item"><span>✓</span>いつでも解約OK</div>
+</div>
+
+<div class="form-wrap">
+  <form action="https://formspree.io/f/mrerwzke" method="POST">
+    <input type="hidden" name="_next" value="https://sanpoengine-kohei.github.io/ichiban-deshi/thank-you.html">
+    <input type="hidden" name="_subject" value="【イチバンデシ】新規お申し込みがありました">
+
+    <div class="f-row">
+      <div class="f-group">
+        <label class="f-label">お名前 <span class="f-req">必須</span></label>
+        <input class="f-input" type="text" name="name" placeholder="山田 太郎" required>
+      </div>
+      <div class="f-group">
+        <label class="f-label">フリガナ</label>
+        <input class="f-input" type="text" name="furigana" placeholder="ヤマダ タロウ">
+      </div>
+    </div>
+
+    <div class="f-row">
+      <div class="f-group">
+        <label class="f-label">電話番号 <span class="f-req">必須</span></label>
+        <input class="f-input" type="tel" name="tel" placeholder="090-0000-0000" required>
+      </div>
+      <div class="f-group">
+        <label class="f-label">メールアドレス <span class="f-req">必須</span></label>
+        <input class="f-input" type="email" name="email" placeholder="example@mail.com" required>
+      </div>
+    </div>
+
+    <div class="f-row">
+      <div class="f-group">
+        <label class="f-label">屋号・会社名</label>
+        <input class="f-input" type="text" name="company" placeholder="山田工務店">
+      </div>
+      <div class="f-group">
+        <label class="f-label">主な活動エリア</label>
+        <input class="f-input" type="text" name="area" placeholder="例：愛知県名古屋市">
+      </div>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">工事種別 <span class="f-req">必須</span></label>
+      <div class="f-check-group">
+        <label class="f-check"><input type="checkbox" name="work_type" value="内装"><span>内装</span></label>
+        <label class="f-check"><input type="checkbox" name="work_type" value="外壁・塗装"><span>外壁・塗装</span></label>
+        <label class="f-check"><input type="checkbox" name="work_type" value="屋根"><span>屋根</span></label>
+        <label class="f-check"><input type="checkbox" name="work_type" value="電気"><span>電気</span></label>
+        <label class="f-check"><input type="checkbox" name="work_type" value="水道・設備"><span>水道・設備</span></label>
+        <label class="f-check"><input type="checkbox" name="work_type" value="大工・木工"><span>大工・木工</span></label>
+        <label class="f-check"><input type="checkbox" name="work_type" value="土木・外構"><span>土木・外構</span></label>
+        <label class="f-check"><input type="checkbox" name="work_type" value="その他"><span>その他</span></label>
+      </div>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">月間の案件数 <span class="f-req">必須</span></label>
+      <select class="f-input f-select" name="volume" required>
+        <option value="" disabled selected>選んでください</option>
+        <option>1〜3件</option>
+        <option>4〜10件</option>
+        <option>11〜20件</option>
+        <option>21件以上</option>
+      </select>
+    </div>
+
+    <hr class="f-divider">
+
+    <div class="f-group">
+      <label class="f-label">初期設定代行の希望</label>
+      <div class="f-check-group">
+        <label class="f-radio"><input type="radio" name="setup" value="希望する（¥30,000 / 先着5名無料）" checked><span>希望する（¥30,000 / 先着5名無料）</span></label>
+        <label class="f-radio"><input type="radio" name="setup" value="自分で設定する"><span>自分で設定する</span></label>
+      </div>
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">紹介者のお名前（あれば）</label>
+      <input class="f-input" type="text" name="referrer" placeholder="紹介してくれた方のお名前">
+    </div>
+
+    <div class="f-group">
+      <label class="f-label">ご質問・ご要望</label>
+      <textarea class="f-input" name="message" rows="4" placeholder="現在の課題や気になることがあればお気軽にどうぞ" style="resize:vertical"></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit">無料で申し込む（30日間）</button>
+    <p class="form-note">送信後、担当者より1営業日以内にご連絡いたします。</p>
+  </form>
+</div>
+
+<footer>
+  <a href="index.html" class="footer-logo">イチバン<span>デシ</span></a>
+  <p>© 2025 SANPO ENGINE. イチバンデシ.</p>
+</footer>
+
+</body>
+</html>
