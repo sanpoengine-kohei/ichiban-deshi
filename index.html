@@ -8,299 +8,271 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:      #F2F4F2;
-    --bg2:     #E8EDE8;
-    --white:   #FFFFFF;
-    --green:   #2A7A45;
-    --green-lt:#3A9B58;
-    --accent:  #2A7A45;
-    --accent2: #E8F5EC;
-    --text:    #1A2A1F;
-    --muted:   #6B7F70;
-    --red:     #C0392B;
-    --border:  #C8D9CC;
-    --shadow:  rgba(42,122,69,0.10);
+    --bg:     #F5F5F7;
+    --white:  #FFFFFF;
+    --black:  #1D1D1F;
+    --gray:   #6E6E73;
+    --accent: #2A7A45;
+    --accent2:#E8F5EC;
+    --border: #D2D2D7;
+    --red:    #C0392B;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
-  body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); overflow-x:hidden; }
+  body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--black); overflow-x:hidden; }
 
   /* NAV */
   nav {
     position:fixed; top:0; left:0; right:0; z-index:100;
-    padding:0 5vw; height:64px;
-    display:flex; justify-content:space-between; align-items:center;
-    background:var(--white); border-bottom:1px solid var(--border);
-    box-shadow:0 1px 8px rgba(0,0,0,0.06);
+    height:52px; display:flex; align-items:center; justify-content:space-between;
+    padding:0 5vw;
+    background:rgba(245,245,247,0.85); backdrop-filter:blur(20px) saturate(180%);
+    border-bottom:1px solid rgba(0,0,0,0.08);
   }
-  .nav-logo { font-weight:900; font-size:26px; letter-spacing:0.05em; color:var(--text); text-decoration:none; }
+  .nav-logo { font-weight:900; font-size:22px; letter-spacing:0.03em; color:var(--black); text-decoration:none; }
   .nav-logo span { color:var(--accent); }
-  .nav-links { display:flex; gap:28px; align-items:center; list-style:none; }
-  .nav-links a { color:var(--muted); text-decoration:none; font-size:13px; font-weight:500; transition:color 0.15s; }
-  .nav-links a:hover { color:var(--accent); }
-  .nav-cta {
-    background:var(--accent) !important; color:#fff !important;
-    font-weight:700 !important; padding:10px 22px;
-    font-size:13px !important; border-radius:4px;
-  }
+  .nav-links { display:flex; gap:24px; list-style:none; align-items:center; }
+  .nav-links a { font-size:12px; color:var(--gray); text-decoration:none; font-weight:500; transition:color 0.15s; }
+  .nav-links a:hover { color:var(--black); }
+  .nav-cta { background:var(--accent) !important; color:#fff !important; font-weight:700 !important; padding:8px 18px; border-radius:980px; font-size:12px !important; }
   @media(max-width:640px){ .nav-links { display:none; } }
 
   /* HERO */
   .hero {
-    min-height:100vh; display:flex; align-items:center;
-    padding:100px 5vw 60px; position:relative; overflow:hidden;
-    background:linear-gradient(135deg, #F2F4F2 0%, #E4EFE7 100%);
+    background:var(--white);
+    padding:120px 5vw 100px;
+    text-align:center;
+    position:relative; overflow:hidden;
   }
-  .hero::before {
-    content:''; position:absolute; right:-80px; top:50%;
-    transform:translateY(-50%);
-    width:500px; height:500px; border-radius:50%;
-    background:radial-gradient(circle, rgba(42,122,69,0.08) 0%, transparent 70%);
-    pointer-events:none;
-  }
-  .hero-inner {
-    display:grid; grid-template-columns:1fr 1fr;
-    gap:60px; align-items:center; max-width:1100px; width:100%;
-  }
-  @media(max-width:768px){ .hero-inner { grid-template-columns:1fr; } }
-  .hero-label {
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--accent2); border:1px solid rgba(42,122,69,0.25);
-    padding:6px 14px; font-size:11px; font-weight:700;
-    letter-spacing:0.25em; color:var(--accent); text-transform:uppercase;
-    margin-bottom:20px; border-radius:2px;
+  .hero-eye {
+    font-size:13px; font-weight:700; color:var(--accent);
+    letter-spacing:0.05em; margin-bottom:16px; display:block;
   }
   .hero-title {
-    font-weight:900; font-size:clamp(32px,5vw,58px);
-    line-height:1.15; letter-spacing:-0.02em; margin-bottom:16px; color:var(--text);
+    font-weight:900;
+    font-size:clamp(40px,8vw,96px);
+    line-height:1.05; letter-spacing:-0.03em;
+    color:var(--black); margin-bottom:20px;
   }
   .hero-title .ac { color:var(--accent); }
   .hero-sub {
-    font-size:16px; color:var(--muted); line-height:2;
-    margin-bottom:36px; max-width:460px; word-break:keep-all;
+    font-size:clamp(16px,2.2vw,21px);
+    color:var(--gray); line-height:1.8;
+    max-width:600px; margin:0 auto 40px;
+    font-weight:400;
   }
-  .hero-cta-wrap { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:40px; }
-  .btn-main {
-    background:var(--accent); color:#fff; font-weight:700; font-size:15px;
-    padding:16px 36px; border:none; cursor:pointer; letter-spacing:0.05em;
-    text-decoration:none; display:inline-block; border-radius:4px;
-    transition:background 0.15s, transform 0.15s, box-shadow 0.15s;
-    box-shadow:0 4px 14px var(--shadow);
+  .hero-cta-group {
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+    margin-bottom:60px;
   }
-  .btn-main:hover { background:var(--green-lt); transform:translateY(-1px); box-shadow:0 6px 20px var(--shadow); }
-  .btn-ghost {
-    color:var(--accent); font-size:13px; font-weight:700;
-    text-decoration:none; display:flex; align-items:center; gap:6px;
-    transition:gap 0.15s;
+  .btn-primary {
+    background:var(--accent); color:#fff;
+    font-weight:700; font-size:15px;
+    padding:14px 32px; border-radius:980px;
+    text-decoration:none; transition:opacity 0.15s;
+    display:inline-block;
   }
-  .btn-ghost:hover { gap:10px; }
+  .btn-primary:hover { opacity:0.85; }
+  .btn-secondary {
+    background:rgba(42,122,69,0.1); color:var(--accent);
+    font-weight:700; font-size:15px;
+    padding:14px 32px; border-radius:980px;
+    text-decoration:none; transition:background 0.15s;
+    display:inline-block;
+  }
+  .btn-secondary:hover { background:rgba(42,122,69,0.18); }
   .hero-stats {
-    display:flex; gap:32px; flex-wrap:wrap;
-    padding-top:28px; border-top:1px solid var(--border);
+    display:flex; justify-content:center; gap:48px; flex-wrap:wrap;
+    padding-top:40px; border-top:1px solid var(--border);
+    max-width:600px; margin:0 auto;
   }
-  .stat { display:flex; flex-direction:column; gap:3px; }
-  .stat-n { font-family:'Bebas Neue',sans-serif; font-size:36px; color:var(--accent); line-height:1; letter-spacing:0.05em; }
-  .stat-l { font-size:11px; color:var(--muted); letter-spacing:0.1em; }
+  .stat { text-align:center; }
+  .stat-n { font-family:'Bebas Neue',sans-serif; font-size:44px; color:var(--accent); line-height:1; letter-spacing:0.05em; display:block; }
+  .stat-l { font-size:11px; color:var(--gray); letter-spacing:0.1em; margin-top:4px; display:block; }
 
-  /* HERO RIGHT — モックUI */
-  .hero-visual {
-    background:var(--white); border-radius:12px;
-    box-shadow:0 8px 40px rgba(0,0,0,0.10);
-    padding:24px; overflow:hidden;
+  /* MOCK HERO VISUAL */
+  .hero-visual-wrap {
+    max-width:480px; margin:60px auto 0;
+    background:var(--bg); border-radius:18px;
+    box-shadow:0 2px 24px rgba(0,0,0,0.08);
+    padding:20px; text-align:left;
   }
-  .mock-bar {
-    display:flex; align-items:center; gap:8px;
-    margin-bottom:18px; padding-bottom:14px;
-    border-bottom:1px solid var(--border);
-  }
-  .mock-dot { width:10px; height:10px; border-radius:50%; }
-  .mock-title { font-size:13px; font-weight:700; color:var(--text); margin-left:4px; }
+  .mock-bar { display:flex; align-items:center; gap:6px; margin-bottom:14px; }
+  .m-dot { width:10px; height:10px; border-radius:50%; }
   .mock-row {
     display:flex; align-items:center; gap:10px;
-    padding:12px 14px; background:var(--bg); border-radius:6px;
-    margin-bottom:8px; font-size:12px; color:var(--text);
+    background:var(--white); border-radius:8px;
+    padding:11px 14px; margin-bottom:8px; font-size:12px;
   }
-  .m-tag {
-    font-size:10px; font-weight:700; padding:3px 9px;
-    border-radius:3px; letter-spacing:0.05em; flex-shrink:0;
-  }
+  .m-tag { font-size:9px; font-weight:700; padding:3px 8px; border-radius:4px; flex-shrink:0; }
   .t-g { background:#E8F5EC; color:#2A7A45; }
-  .t-y { background:#FFF8E1; color:#F59E0B; }
+  .t-y { background:#FFF8E1; color:#B7870A; }
   .t-gr { background:#F0F0F0; color:#888; }
-  .m-amt { margin-left:auto; font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--accent); letter-spacing:0.04em; }
+  .m-amt { margin-left:auto; font-family:'Bebas Neue',sans-serif; font-size:17px; color:var(--accent); }
   .mock-total {
-    display:flex; justify-content:space-between; align-items:center;
-    margin-top:14px; padding:14px 16px;
-    background:var(--accent2); border-radius:6px;
-    border:1px solid rgba(42,122,69,0.2);
+    background:var(--accent2); border-radius:8px;
+    padding:12px 14px; display:flex; justify-content:space-between; align-items:center; margin-top:4px;
   }
-  .mock-total-l { font-size:11px; color:var(--muted); }
-  .mock-total-n { font-family:'Bebas Neue',sans-serif; font-size:30px; color:var(--accent); letter-spacing:0.04em; }
+  .mock-total-l { font-size:11px; color:var(--gray); }
+  .mock-total-n { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--accent); }
 
-  /* SECTION COMMON */
-  .sec-eye { font-size:11px; font-weight:700; letter-spacing:0.4em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
-  .sec-title { font-weight:900; font-size:clamp(24px,3.5vw,42px); line-height:1.25; margin-bottom:48px; color:var(--text); }
-
-  /* PAIN */
-  .pain { padding:100px 5vw; background:var(--white); }
-  .pain-grid { display:grid; grid-template-columns:1fr; gap:16px; max-width:640px; }
-  .p-card {
-    background:var(--bg); border:1px solid var(--border);
-    border-radius:12px; padding:32px 28px;
-    transition:box-shadow 0.2s, transform 0.2s;
+  /* SECTION BAND */
+  .band {
+    padding:80px 5vw;
+    text-align:center;
   }
-  .p-card:hover { box-shadow:0 4px 20px var(--shadow); transform:translateY(-2px); }
-  .p-icon { font-size:32px; margin-bottom:16px; }
-  .p-title { font-weight:700; font-size:17px; margin-bottom:10px; line-height:1.5; color:var(--text); word-break:keep-all; }
-  .p-desc { font-size:14px; color:var(--muted); line-height:1.85; word-break:auto-phrase; }
+  .band-label {
+    font-size:12px; font-weight:700; color:var(--accent);
+    letter-spacing:0.1em; margin-bottom:12px; display:block;
+  }
+  .band-title {
+    font-weight:900; font-size:clamp(32px,6vw,72px);
+    line-height:1.08; letter-spacing:-0.02em; color:var(--black);
+  }
+  .band-title .ac { color:var(--accent); }
+  .band-sub {
+    font-size:clamp(14px,1.8vw,18px); color:var(--gray);
+    line-height:1.8; max-width:560px; margin:16px auto 0;
+  }
+
+  /* CAROUSEL */
+  .carousel-section { padding:20px 0 60px; }
+  .carousel-label {
+    font-size:12px; font-weight:700; color:var(--accent);
+    letter-spacing:0.1em; padding:0 5vw; margin-bottom:8px; display:block;
+  }
+  .carousel-title {
+    font-weight:900; font-size:clamp(24px,4vw,40px);
+    line-height:1.2; padding:0 5vw; margin-bottom:28px; color:var(--black);
+  }
+  .carousel-track {
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none; padding:4px 5vw 20px;
+    display:flex; gap:14px; cursor:grab;
+  }
+  .carousel-track::-webkit-scrollbar { display:none; }
+  .c-card {
+    min-width:260px; max-width:260px; flex-shrink:0;
+    background:var(--white); border-radius:18px;
+    padding:24px 22px; display:flex; flex-direction:column;
+    box-shadow:0 1px 8px rgba(0,0,0,0.06);
+  }
+  .c-card-num { font-size:11px; font-weight:700; color:var(--gray); letter-spacing:0.1em; margin-bottom:10px; }
+  .c-card-title { font-weight:900; font-size:17px; line-height:1.5; color:var(--black); margin-bottom:12px; }
+  .c-card-desc { font-size:13px; color:var(--gray); line-height:1.8; flex:1; }
+  .c-card-icon { margin-top:24px; display:flex; justify-content:center; }
+  .carousel-hint {
+    text-align:center; font-size:11px; color:var(--gray);
+    display:flex; align-items:center; justify-content:center; gap:5px; padding-top:4px;
+  }
 
   /* SOLUTION */
-  .solution { padding:100px 5vw; background:var(--bg); }
-  .sol-inner { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; max-width:1080px; }
-  @media(max-width:768px){ .sol-inner { grid-template-columns:1fr; gap:40px; } }
-  .feat-list { display:flex; flex-direction:column; gap:28px; }
-  .feat { display:flex; gap:16px; align-items:flex-start; }
-  .feat-n {
-    width:36px; height:36px; border-radius:50%;
-    background:var(--accent2); border:1px solid rgba(42,122,69,0.25);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'Bebas Neue',sans-serif; font-size:16px; color:var(--accent);
-    flex-shrink:0;
+  .solution-section { background:var(--white); }
+  .sol-inner { max-width:640px; padding:0 5vw 80px; }
+  .phase {
+    margin-bottom:4px;
   }
-  .feat-b h3 { font-weight:700; font-size:16px; margin-bottom:6px; color:var(--text); }
-  .feat-b p { font-size:12px; color:var(--muted); line-height:1.9; }
-  .sol-visual {
-    background:var(--white); border-radius:12px;
-    box-shadow:0 4px 24px rgba(0,0,0,0.08);
-    padding:24px;
+  .phase-head {
+    background:var(--black); color:#fff;
+    font-weight:700; font-size:14px; letter-spacing:0.08em;
+    padding:14px 20px; border-radius:10px 10px 0 0; text-align:center;
   }
-
-  /* SETUP */
-  .setup { padding:100px 5vw; background:var(--white); }
-  .setup-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:40px; }
-  .setup-card {
-    background:var(--bg); border:1px solid var(--border);
-    border-radius:8px; padding:28px 22px;
-    transition:box-shadow 0.2s;
+  .phase-body {
+    background:var(--bg); border:1px solid var(--border); border-top:none;
+    padding:24px 22px; border-radius:0 0 10px 10px; margin-bottom:20px;
   }
-  .setup-card:hover { box-shadow:0 4px 16px var(--shadow); }
-  .price-box {
-    background:var(--accent2); border:1px solid rgba(42,122,69,0.3);
-    border-radius:8px; padding:36px 32px;
-    position:relative; overflow:hidden; max-width:580px;
-  }
-  .p-ribbon {
-    position:absolute; top:0; right:0;
-    background:var(--red); color:#fff;
-    font-size:10px; font-weight:700; letter-spacing:0.15em;
-    padding:8px 20px; border-radius:0 8px 0 8px;
-  }
-  .p-row { display:flex; align-items:flex-end; gap:20px; flex-wrap:wrap; margin-bottom:16px; }
-  .p-old-l { font-size:10px; color:var(--muted); margin-bottom:3px; }
-  .p-old { font-family:'Bebas Neue',sans-serif; font-size:42px; color:var(--muted); text-decoration:line-through; line-height:1; }
-  .p-arr { font-size:20px; color:var(--muted); padding-bottom:4px; }
-  .p-new-l { font-size:10px; color:var(--accent); font-weight:700; margin-bottom:3px; }
-  .p-new { font-family:'Bebas Neue',sans-serif; font-size:72px; color:var(--accent); line-height:1; }
-  .p-note { font-size:13px; color:var(--muted); line-height:1.9; }
+  .phase-lead { font-size:16px; font-weight:700; text-align:center; line-height:1.6; margin-bottom:16px; }
+  .phase-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+  .phase-list li { font-size:14px; color:var(--gray); line-height:1.8; padding-left:16px; border-left:3px solid var(--accent); }
 
   /* PRICING */
-  .pricing { padding:100px 5vw; background:var(--bg); }
-  .plan-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; max-width:860px; margin-top:48px; }
-  .plan-card {
-    background:var(--white); border:2px solid var(--border);
-    border-radius:10px; padding:36px 32px;
-    transition:box-shadow 0.2s;
+  .pricing-circle-section { background:var(--white); padding:80px 5vw; text-align:center; }
+  .circle-row {
+    display:flex; flex-direction:column; align-items:center; gap:0;
+    max-width:400px; margin:0 auto;
   }
-  .plan-card:hover { box-shadow:0 6px 24px var(--shadow); }
-  .plan-card.active { border-color:var(--accent); }
-  .plan-badge {
-    display:inline-block; font-size:10px; font-weight:700;
-    letter-spacing:0.2em; padding:4px 12px; border-radius:3px;
-    background:var(--accent2); color:var(--accent); margin-bottom:10px;
+  .circle-item { padding:40px 20px; }
+  .circle-wrap {
+    position:relative; width:220px; height:220px; margin:0 auto 24px;
   }
-  .plan-sub { font-size:11px; color:var(--muted); margin-bottom:14px; line-height:1.7; }
-  .plan-name { font-weight:900; font-size:20px; margin-bottom:4px; color:var(--text); }
-  .plan-price { font-family:'Bebas Neue',sans-serif; font-size:64px; line-height:1; margin-bottom:2px; letter-spacing:0.02em; color:var(--accent); }
-  .plan-unit { font-size:12px; color:var(--muted); margin-bottom:24px; }
-  .plan-feats { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
-  .plan-feats li { font-size:13px; display:flex; align-items:flex-start; gap:8px; line-height:1.5; color:var(--text); }
-  .plan-feats li::before { content:'✓'; font-weight:700; flex-shrink:0; color:var(--accent); margin-top:1px; }
-  .plan-cta {
-    display:block; text-align:center; padding:14px;
-    font-weight:700; font-size:14px; letter-spacing:0.06em;
-    text-decoration:none; border-radius:4px;
-    background:var(--accent); color:#fff;
-    transition:background 0.15s;
+  .circle-wrap svg { position:absolute; inset:0; }
+  .circle-inner {
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
   }
-  .plan-cta:hover { background:var(--green-lt); }
-  .plan-note { margin-top:12px; font-size:11px; color:var(--muted); text-align:center; line-height:1.7; }
-  /* PRO coming soon card */
-  .plan-card.coming {
-    border-style:dashed; border-color:var(--border);
-    background:var(--bg); text-decoration:none; display:flex; flex-direction:column;
-    transition:border-color 0.2s, box-shadow 0.2s;
-    color:var(--text);
+  .circle-label { font-size:13px; color:var(--gray); margin-bottom:4px; }
+  .circle-price { font-family:'Bebas Neue',sans-serif; font-size:64px; color:var(--black); line-height:1; }
+  .circle-sub { font-size:11px; color:var(--gray); line-height:1.6; text-align:center; margin-top:4px; }
+  .circle-desc { font-size:14px; color:var(--gray); line-height:1.9; max-width:280px; margin:0 auto; }
+  .circle-note { margin-top:16px; padding:14px; background:var(--accent2); border-radius:10px; font-size:13px; color:var(--gray); line-height:1.8; max-width:280px; margin-left:auto; margin-right:auto; }
+  .circle-divider {
+    display:flex; align-items:center; gap:12px;
+    width:100%; max-width:260px;
   }
-  .plan-card.coming:hover { border-color:var(--accent); box-shadow:0 4px 20px var(--shadow); }
-  .coming-badge {
-    display:inline-flex; align-items:center; gap:6px;
-    background:var(--accent2); border:1px solid rgba(42,122,69,0.25);
-    padding:5px 12px; font-size:10px; font-weight:700;
-    letter-spacing:0.2em; color:var(--accent); margin-bottom:16px; border-radius:3px; width:fit-content;
+  .circle-divider-line { flex:1; border-top:2px dashed var(--border); }
+  .circle-divider-icon {
+    width:32px; height:32px; border-radius:50%;
+    background:var(--bg); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
-  .coming-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); animation:pulse 1.5s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+
+  /* PLAN CARDS */
+  .plan-section { padding:0 0 80px; }
 
   /* REFERRAL */
-  .referral { padding:100px 5vw; background:var(--white); }
-  .ref-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; max-width:680px; margin-bottom:36px; }
-  .ref-card {
-    background:var(--bg); border:1px solid var(--border);
-    border-radius:8px; padding:24px 20px; text-align:center;
-  }
-  .ref-num { font-family:'Bebas Neue',sans-serif; font-size:44px; color:var(--accent); line-height:1; margin-bottom:8px; }
-  .ref-title { font-weight:700; font-size:14px; margin-bottom:6px; color:var(--text); }
-  .ref-desc { font-size:12px; color:var(--muted); line-height:1.8; }
-  .ref-box {
-    background:var(--accent2); border:1px solid rgba(42,122,69,0.25);
-    border-radius:8px; padding:28px 32px; max-width:580px;
-    display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+  .referral-section { background:var(--white); padding:80px 5vw; }
+  .ref-steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; max-width:640px; margin-bottom:32px; }
+  .ref-card { background:var(--bg); border-radius:14px; padding:22px 18px; text-align:center; }
+  .ref-num { font-family:'Bebas Neue',sans-serif; font-size:40px; color:var(--accent); line-height:1; margin-bottom:8px; }
+  .ref-title { font-weight:700; font-size:14px; margin-bottom:6px; }
+  .ref-desc { font-size:12px; color:var(--gray); line-height:1.8; }
+  .ref-summary {
+    background:var(--accent2); border-radius:14px;
+    padding:24px 28px; max-width:520px;
+    display:flex; align-items:center; gap:18px; flex-wrap:wrap;
   }
 
   /* FAQ */
-  .faq { padding:100px 5vw; background:var(--bg); max-width:760px; }
+  .faq-section { padding:80px 5vw; max-width:680px; }
   .faq-item { border-bottom:1px solid var(--border); padding:22px 0; }
-  .faq-q { font-weight:700; font-size:15px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:flex-start; gap:16px; color:var(--text); }
-  .faq-q::after { content:'+'; font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--accent); flex-shrink:0; line-height:1; }
-  .faq-a { font-size:13px; color:var(--muted); line-height:1.9; }
+  .faq-q {
+    font-weight:700; font-size:15px; color:#1D1D1F;
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+    margin-bottom:10px; cursor:default;
+  }
+  .faq-q::after { content:'+'; font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--accent); flex-shrink:0; line-height:1; }
+  .faq-a { font-size:13px; color:#6E6E73; line-height:1.9; background:transparent; }
 
-  /* CTA */
-  .cta-section {
-    padding:100px 5vw; text-align:center;
-    background:linear-gradient(135deg, var(--accent) 0%, var(--green-lt) 100%);
+  /* CTA FINAL */
+  .final-cta {
+    background:var(--black); padding:100px 5vw; text-align:center;
   }
-  .cta-section h2 { font-weight:900; font-size:clamp(28px,4vw,48px); line-height:1.2; margin-bottom:14px; color:#fff; }
-  .cta-section p { font-size:14px; color:rgba(255,255,255,0.75); margin-bottom:36px; line-height:1.9; }
-  .btn-main-white {
-    background:#fff; color:var(--accent); font-weight:700; font-size:15px;
-    padding:18px 48px; border:none; cursor:pointer; letter-spacing:0.05em;
-    text-decoration:none; display:inline-block; border-radius:4px;
-    transition:transform 0.15s, box-shadow 0.15s;
-    box-shadow:0 4px 20px rgba(0,0,0,0.15);
+  .final-cta h2 { font-weight:900; font-size:clamp(32px,5vw,60px); line-height:1.15; color:#fff; margin-bottom:16px; letter-spacing:-0.02em; }
+  .final-cta h2 span { color:var(--accent); }
+  .final-cta p { font-size:15px; color:rgba(255,255,255,0.55); margin-bottom:36px; line-height:1.8; }
+  .btn-primary-lg {
+    background:var(--accent); color:#fff;
+    font-weight:700; font-size:16px;
+    padding:18px 48px; border-radius:980px;
+    text-decoration:none; transition:opacity 0.15s;
+    display:inline-block;
+    box-shadow:0 4px 20px rgba(42,122,69,0.35);
   }
-  .btn-main-white:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,0.2); }
+  .btn-primary-lg:hover { opacity:0.85; }
 
   footer {
-    background:var(--text); padding:36px 5vw;
+    background:#000; padding:32px 5vw;
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
   }
-  .footer-logo { font-weight:900; font-size:17px; letter-spacing:0.05em; color:#fff; text-decoration:none; }
+  .footer-logo { font-weight:900; font-size:17px; color:#fff; text-decoration:none; }
   .footer-logo span { color:var(--accent); }
   footer p { font-size:12px; color:rgba(255,255,255,0.3); }
 
-  .fu { opacity:0; transform:translateY(22px); transition:opacity 0.65s,transform 0.65s; }
+  .fu { opacity:0; transform:translateY(20px); transition:opacity 0.6s,transform 0.6s; }
   .fu.vis { opacity:1; transform:translateY(0); }
   .d1{transition-delay:0.1s} .d2{transition-delay:0.2s} .d3{transition-delay:0.3s}
+
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
 </style>
 </head>
 <body>
@@ -308,298 +280,259 @@
 <nav>
   <a href="#" class="nav-logo">イチバン<span>デシ</span></a>
   <ul class="nav-links">
-    <li><a href="#pain">こんな悩みない？</a></li>
+    <li><a href="#pain">悩み</a></li>
     <li><a href="#solution">できること</a></li>
-    <li><a href="#setup">初期設定代行</a></li>
     <li><a href="#pricing">料金</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="form.html" class="nav-cta">無料で始める</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-label fu">建設業 一人親方・小規模事業者向け</div>
-      <h1 class="hero-title fu d1">現場の仕事を、<br><span class="ac">スマートに。</span><br>稼ぎを、増やす。</h1>
-      <p class="hero-sub fu d2">見積・請求・顧客管理を<br>スマホひとつで完結。<br>紙とエクセルの手間をゼロにして、<br>現場に集中できる時間をつくる。</p>
-      <div class="hero-cta-wrap fu d2">
-        <a href="form.html" class="btn-main">今すぐ無料で試す（30日間）</a>
-        <a href="howto.html" class="btn-ghost"><span>使い方を見る</span><span>→</span></a>
-      </div>
-      <div class="hero-stats fu d3">
-        <div class="stat"><span class="stat-n">30日</span><span class="stat-l">無料トライアル</span></div>
-        <div class="stat"><span class="stat-n">5分</span><span class="stat-l">導入時間の目安</span></div>
-        <div class="stat"><span class="stat-n">¥0</span><span class="stat-l">初期費用</span></div>
-      </div>
+  <span class="hero-eye fu">建設業 一人親方・小規模事業者向け</span>
+  <h1 class="hero-title fu d1">
+    現場の仕事を、<br>
+    <span class="ac">スマートに。</span>
+  </h1>
+  <p class="hero-sub fu d2">
+    見積・請求・顧客管理を<br>スマホひとつで完結。<br>紙とエクセルの手間をゼロにして、<br>現場に集中できる時間をつくる。
+  </p>
+  <div class="hero-cta-group fu d2">
+    <a href="form.html" class="btn-primary">今すぐ無料で試す（30日間）</a>
+    <a href="howto.html" class="btn-secondary">使い方を見る</a>
+  </div>
+  <div class="hero-stats fu d3">
+    <div class="stat"><span class="stat-n">30日</span><span class="stat-l">無料トライアル</span></div>
+    <div class="stat"><span class="stat-n">5分</span><span class="stat-l">導入時間の目安</span></div>
+    <div class="stat"><span class="stat-n">¥0</span><span class="stat-l">初期費用</span></div>
+  </div>
+  <div class="hero-visual-wrap fu d3">
+    <div class="mock-bar">
+      <div class="m-dot" style="background:#FF5F57"></div>
+      <div class="m-dot" style="background:#FFBD2E"></div>
+      <div class="m-dot" style="background:#28C840"></div>
+      <span style="font-size:12px;font-weight:700;color:var(--black);margin-left:6px">案件一覧</span>
     </div>
-    <div class="hero-visual fu d2">
-      <div class="mock-bar">
-        <div class="mock-dot" style="background:#FF5F57"></div>
-        <div class="mock-dot" style="background:#FFBD2E"></div>
-        <div class="mock-dot" style="background:#28C840"></div>
-        <span class="mock-title">案件一覧</span>
-      </div>
-      <div class="mock-row"><span class="m-tag t-g">入金済</span><span style="flex:1">外壁塗装工事 / 田中様邸</span><span class="m-amt">¥380,000</span></div>
-      <div class="mock-row"><span class="m-tag t-y">請求中</span><span style="flex:1">内装リフォーム / 山本商店</span><span class="m-amt">¥145,000</span></div>
-      <div class="mock-row"><span class="m-tag t-gr">見積中</span><span style="flex:1">屋根修繕工事 / 佐藤様邸</span><span class="m-amt">¥220,000</span></div>
-      <div class="mock-row"><span class="m-tag t-y">請求中</span><span style="flex:1">電気配線工事 / ㈱〇〇</span><span class="m-amt">¥88,000</span></div>
-      <div class="mock-total">
-        <span class="mock-total-l">今月の売上合計</span>
-        <span class="mock-total-n">¥833,000</span>
-      </div>
+    <div class="mock-row"><span class="m-tag t-g">入金済</span><span style="flex:1">外壁塗装工事 / 田中様邸</span><span class="m-amt">¥380,000</span></div>
+    <div class="mock-row"><span class="m-tag t-y">請求中</span><span style="flex:1">内装リフォーム / 山本商店</span><span class="m-amt">¥145,000</span></div>
+    <div class="mock-row"><span class="m-tag t-gr">見積中</span><span style="flex:1">屋根修繕工事 / 佐藤様邸</span><span class="m-amt">¥220,000</span></div>
+    <div class="mock-row"><span class="m-tag t-y">請求中</span><span style="flex:1">電気配線工事 / ㈱〇〇</span><span class="m-amt">¥88,000</span></div>
+    <div class="mock-total">
+      <span class="mock-total-l">今月の売上合計</span>
+      <span class="mock-total-n">¥833,000</span>
     </div>
   </div>
 </section>
 
-<!-- PAIN -->
-<section class="pain" id="pain">
+<!-- PAIN BAND -->
+<section class="band fu" id="pain" style="background:var(--bg)">
+  <span class="band-label">こんな悩み、ありませんか？</span>
+  <h2 class="band-title">一人でやると、<br>事務仕事が<span class="ac">山積み</span>になる。</h2>
+</section>
 
-  <div class="fu" style="text-align:center;margin-bottom:40px">
-    <div style="display:inline-block;background:var(--bg2);border-radius:60px;padding:18px 36px;font-size:clamp(16px,3vw,20px);font-weight:900;color:var(--text);position:relative;max-width:90%">
-      こんな悩み、ありませんか？
-      <div style="position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:18px solid var(--bg2)"></div>
+<!-- PAIN CAROUSEL -->
+<section class="carousel-section" style="background:var(--bg)">
+  <div class="carousel-track" id="pain-carousel">
+    <div class="c-card">
+      <div class="c-card-num">お悩みその①</div>
+      <div class="c-card-title">見積書・請求書を<br>毎回Excelで<br>手打ちしている</div>
+      <p class="c-card-desc">単価の入力ミス、送り忘れ、バージョン管理の混乱。深夜に書類作成というループから抜け出せない。</p>
+      <div class="c-card-icon">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+    </div>
+    <div class="c-card">
+      <div class="c-card-num">お悩みその②</div>
+      <div class="c-card-title">入金確認が遅れて<br>資金繰りが<br>不安になる</div>
+      <p class="c-card-desc">どの現場の請求がいつ払われるか把握できていない。確認の電話をかけるのも気が引ける。</p>
+      <div class="c-card-icon">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      </div>
+    </div>
+    <div class="c-card">
+      <div class="c-card-num">お悩みその③</div>
+      <div class="c-card-title">材料費・労務費が<br>現場ごとに<br>管理できていない</div>
+      <p class="c-card-desc">終わってみれば赤字だったということも。どこで利益が出てどこで損しているか、数字で見えていない。</p>
+      <div class="c-card-icon">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+      </div>
+    </div>
+    <div class="c-card" style="margin-right:5vw">
+      <div class="c-card-num">お悩みその④</div>
+      <div class="c-card-title">「早く書類ちょうだい」<br>と取引先から<br>言われる</div>
+      <p class="c-card-desc">書類のやりとりに時間がかかると、次の仕事につながらない。信頼を積み重ねるチャンスを逃している。</p>
+      <div class="c-card-icon">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
     </div>
   </div>
-
-  <div style="display:flex;flex-direction:column;gap:20px;max-width:640px">
-
-    <div class="p-card fu" style="text-align:center">
-      <div style="font-size:13px;font-weight:700;color:var(--accent);letter-spacing:0.1em;margin-bottom:10px">お悩みその①</div>
-      <div style="width:40px;height:3px;background:var(--accent);margin:0 auto 20px"></div>
-      <div style="margin:0 auto 20px;display:flex;align-items:center;justify-content:center">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      </div>
-      <p style="font-size:17px;font-weight:700;color:var(--text);line-height:1.7;margin-bottom:16px">見積書・請求書を毎回<br>Excelで手打ちしている</p>
-      <p style="font-size:14px;color:var(--muted);line-height:1.9;text-align:left">単価の入力ミス、送り忘れ、バージョン管理の混乱。現場から帰って深夜に書類作成というループから抜け出せない。</p>
-    </div>
-
-    <div class="p-card fu" style="text-align:center">
-      <div style="font-size:13px;font-weight:700;color:var(--accent);letter-spacing:0.1em;margin-bottom:10px">お悩みその②</div>
-      <div style="width:40px;height:3px;background:var(--accent);margin:0 auto 20px"></div>
-      <div style="margin:0 auto 20px;display:flex;align-items:center;justify-content:center">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-      </div>
-      <p style="font-size:17px;font-weight:700;color:var(--text);line-height:1.7;margin-bottom:16px">入金確認が遅れて<br>資金繰りが不安になる</p>
-      <p style="font-size:14px;color:var(--muted);line-height:1.9;text-align:left">どの現場の請求がいつ払われるか把握できていない。確認の電話をかけるのも気が引ける。</p>
-    </div>
-
-    <div class="p-card fu" style="text-align:center">
-      <div style="font-size:13px;font-weight:700;color:var(--accent);letter-spacing:0.1em;margin-bottom:10px">お悩みその③</div>
-      <div style="width:40px;height:3px;background:var(--accent);margin:0 auto 20px"></div>
-      <div style="margin:0 auto 20px;display:flex;align-items:center;justify-content:center">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
-      </div>
-      <p style="font-size:17px;font-weight:700;color:var(--text);line-height:1.7;margin-bottom:16px">現場ごとの材料費・労務費が<br>管理できていない</p>
-      <p style="font-size:14px;color:var(--muted);line-height:1.9;text-align:left">終わってみれば赤字だったということも。どこで利益が出てどこで損しているか、数字で見えていない。</p>
-    </div>
-
-    <div class="p-card fu" style="text-align:center">
-      <div style="font-size:13px;font-weight:700;color:var(--accent);letter-spacing:0.1em;margin-bottom:10px">お悩みその④</div>
-      <div style="width:40px;height:3px;background:var(--accent);margin:0 auto 20px"></div>
-      <div style="margin:0 auto 20px;display:flex;align-items:center;justify-content:center">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <p style="font-size:17px;font-weight:700;color:var(--text);line-height:1.7;margin-bottom:16px">取引先から「早く書類ちょうだい」<br>と言われる</p>
-      <p style="font-size:14px;color:var(--muted);line-height:1.9;text-align:left">書類のやりとりに時間がかかると、次の仕事につながらない。信頼を積み重ねるチャンスを逃している。</p>
-    </div>
-
+  <div class="carousel-hint">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6E6E73" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    スワイプして続きを見る
   </div>
 </section>
 
-<!-- SOLUTION -->
-<section class="solution" id="solution" style="padding:80px 5vw;background:var(--white)">
+<!-- SOLUTION BAND -->
+<section class="band fu" id="solution" style="background:var(--white)">
+  <h2 class="band-title">それ、<span class="ac">イチバンデシ</span>が<br>解決します。</h2>
+  <p class="band-sub">書類業務の流れを、まるごとデジタル化。</p>
+</section>
 
-  <div class="fu" style="text-align:center;margin-bottom:16px">
-    <h2 style="font-weight:900;font-size:clamp(26px,5vw,42px);line-height:1.3;color:var(--text)">
-      それ、<span style="color:var(--accent)">イチバンデシ</span>が<br>解決します！
-    </h2>
-  </div>
-  <div class="fu d1" style="text-align:center;margin-bottom:56px">
-    <svg width="32" height="20" viewBox="0 0 32 20" fill="none"><path d="M2 2L16 16L30 2" stroke="#2A7A45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </div>
-
-  <div style="max-width:640px">
-
-    <div class="fu" style="text-align:center;margin-bottom:40px">
-      <h3 style="font-weight:900;font-size:clamp(20px,4vw,32px);line-height:1.4;color:var(--text)">
-        イチバンデシを活用した<br><span style="color:var(--accent)">書類業務効率化</span>の流れ
-      </h3>
-    </div>
-
-    <div class="fu" style="margin-bottom:2px">
-      <div style="background:var(--text);color:#fff;font-weight:700;font-size:15px;letter-spacing:0.1em;padding:16px;text-align:center;border-radius:6px 6px 0 0">顧客・単価を登録する</div>
-      <div style="background:var(--bg);border:1px solid var(--border);border-top:none;padding:28px 24px;border-radius:0 0 6px 6px;margin-bottom:20px">
-        <p style="font-size:16px;font-weight:700;text-align:center;color:var(--text);margin-bottom:16px;line-height:1.6">初期設定で全部まとめて登録。<br>あとは選ぶだけ。</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
-          <li style="font-size:14px;color:var(--muted);line-height:1.8;padding-left:16px;border-left:3px solid var(--accent)">よく使う単価・品目を事前にマスタ登録しておける</li>
-          <li style="font-size:14px;color:var(--muted);line-height:1.8;padding-left:16px;border-left:3px solid var(--accent)">顧客情報を登録すれば、住所・担当者名が自動入力</li>
+<!-- SOLUTION STEPS -->
+<section class="solution-section">
+  <div class="sol-inner fu">
+    <div class="phase">
+      <div class="phase-head">顧客・単価を登録する</div>
+      <div class="phase-body">
+        <p class="phase-lead">初期設定で全部まとめて登録。<br>あとは選ぶだけ。</p>
+        <ul class="phase-list">
+          <li>よく使う単価・品目を事前にマスタ登録しておける</li>
+          <li>顧客情報を登録すれば、住所・担当者名が自動入力</li>
         </ul>
       </div>
     </div>
-
-    <div class="fu" style="margin-bottom:2px">
-      <div style="background:var(--text);color:#fff;font-weight:700;font-size:15px;letter-spacing:0.1em;padding:16px;text-align:center;border-radius:6px 6px 0 0">見積書を作成・送付する</div>
-      <div style="background:var(--bg);border:1px solid var(--border);border-top:none;padding:28px 24px;border-radius:0 0 6px 6px;margin-bottom:20px">
-        <p style="font-size:16px;font-weight:700;text-align:center;color:var(--text);margin-bottom:16px;line-height:1.6">品目を選んでタップするだけ。<br>5分で完成・その場で送れる。</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
-          <li style="font-size:14px;color:var(--muted);line-height:1.8;padding-left:16px;border-left:3px solid var(--accent)">登録した単価から選ぶだけで金額が自動計算される</li>
-          <li style="font-size:14px;color:var(--muted);line-height:1.8;padding-left:16px;border-left:3px solid var(--accent)">会社印入りPDFをLINE・メールでその場で送付できる</li>
+    <div class="phase">
+      <div class="phase-head">見積書を作成・送付する</div>
+      <div class="phase-body">
+        <p class="phase-lead">品目を選んでタップするだけ。<br>5分で完成・その場で送れる。</p>
+        <ul class="phase-list">
+          <li>登録した単価から選ぶだけで金額が自動計算される</li>
+          <li>会社印入りPDFをLINE・メールでその場で送付できる</li>
         </ul>
       </div>
     </div>
-
-    <div class="fu">
-      <div style="background:var(--text);color:#fff;font-weight:700;font-size:15px;letter-spacing:0.1em;padding:16px;text-align:center;border-radius:6px 6px 0 0">請求書を発行・入金管理する</div>
-      <div style="background:var(--bg);border:1px solid var(--border);border-top:none;padding:28px 24px;border-radius:0 0 6px 6px">
-        <p style="font-size:16px;font-weight:700;text-align:center;color:var(--text);margin-bottom:16px;line-height:1.6">見積書からワンタップで<br>請求書に変換。入金まで一括管理。</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px">
-          <li style="font-size:14px;color:var(--muted);line-height:1.8;padding-left:16px;border-left:3px solid var(--accent)">インボイス対応の請求書PDFを自動生成</li>
-          <li style="font-size:14px;color:var(--muted);line-height:1.8;padding-left:16px;border-left:3px solid var(--accent)">案件ごとの入金状況を一覧で確認。未入金のアラートも</li>
+    <div class="phase">
+      <div class="phase-head">請求書を発行・入金管理する</div>
+      <div class="phase-body">
+        <p class="phase-lead">見積書からワンタップで<br>請求書に変換。入金まで一括管理。</p>
+        <ul class="phase-list">
+          <li>インボイス対応の請求書PDFを自動生成</li>
+          <li>案件ごとの入金状況を一覧で確認。未入金のアラートも</li>
         </ul>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- SETUP -->
-<section class="setup" id="setup">
-  <div class="sec-eye fu" style="text-align:center">料金について</div>
-  <h2 class="sec-title fu d1" style="text-align:center">シンプルな料金体系</h2>
+<!-- PRICING BAND -->
+<section class="band fu" id="pricing" style="background:var(--bg)">
+  <span class="band-label">料金</span>
+  <h2 class="band-title">シンプルな<br>料金体系。</h2>
+</section>
 
-  <div style="max-width:480px;margin:0 auto">
-
-    <!-- 初期費用 -->
-    <div class="fu" style="text-align:center;padding:48px 32px;background:var(--white);border-radius:12px;border:1px solid var(--border)">
-      <div style="margin-bottom:24px">
-        <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2"/>
-          <line x1="8" y1="21" x2="16" y2="21"/>
-          <line x1="12" y1="17" x2="12" y2="21"/>
-          <circle cx="15" cy="8" r="2.5"/>
-          <path d="M13.5 8 L8 8"/>
-          <path d="M13 10.5 L8 13"/>
-        </svg>
+<!-- PRICING CIRCLES -->
+<section class="pricing-circle-section" style="background:var(--bg);padding-top:0">
+  <div class="circle-row">
+    <div class="circle-item fu">
+      <div class="circle-wrap">
+        <svg viewBox="0 0 220 220" width="220" height="220"><circle cx="110" cy="110" r="100" fill="none" stroke="#2A7A45" stroke-width="7"/></svg>
+        <div class="circle-inner">
+          <span class="circle-label">初期費用</span>
+          <span class="circle-price">¥0</span>
+          <span class="circle-sub">先着5名のみ<br>（通常¥30,000）</span>
+        </div>
       </div>
-      <div style="font-weight:900;font-size:24px;margin-bottom:12px;color:var(--text)">初期費用</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--accent);line-height:1;margin-bottom:8px">¥0</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.9">
-        初期登録作業（単価・顧客登録）や<br>アプリのセットアップなど<br>
-        <span style="font-size:11px;background:var(--accent2);color:var(--accent);padding:3px 10px;border-radius:2px;display:inline-block;margin-top:8px;font-weight:700">先着5名のみ無料 / 通常¥30,000</span>
-      </p>
+      <p class="circle-desc">初期登録作業（単価・顧客登録）やアプリのセットアップなど</p>
     </div>
-
-    <!-- 区切り -->
-    <div class="fu" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 0">
-      <div style="flex:1;border-top:2px dashed var(--border)"></div>
-      <div style="width:36px;height:36px;border-radius:50%;background:var(--white);border:1px solid var(--border);display:flex;align-items:center;justify-content:center">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    <div class="circle-divider fu">
+      <div class="circle-divider-line"></div>
+      <div class="circle-divider-icon">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       </div>
-      <div style="flex:1;border-top:2px dashed var(--border)"></div>
+      <div class="circle-divider-line"></div>
     </div>
-
-    <!-- 月額費用 -->
-    <div class="fu" style="text-align:center;padding:48px 32px;background:var(--white);border-radius:12px;border:1px solid var(--border)">
-      <div style="margin-bottom:24px">
-        <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2"/>
-          <line x1="16" y1="2" x2="16" y2="6"/>
-          <line x1="8" y1="2" x2="8" y2="6"/>
-          <line x1="3" y1="10" x2="21" y2="10"/>
-          <rect x="7" y="14" width="2" height="2"/>
-          <rect x="11" y="14" width="2" height="2"/>
-          <rect x="15" y="14" width="2" height="2"/>
-          <rect x="7" y="18" width="2" height="2"/>
-          <rect x="11" y="18" width="2" height="2"/>
-        </svg>
+    <div class="circle-item fu">
+      <div class="circle-wrap">
+        <svg viewBox="0 0 220 220" width="220" height="220"><circle cx="110" cy="110" r="100" fill="none" stroke="#2A7A45" stroke-width="7"/></svg>
+        <div class="circle-inner">
+          <span class="circle-label">月額費用</span>
+          <span class="circle-price" style="font-size:52px">¥2,980</span>
+          <span class="circle-sub">/ 月（税込）</span>
+        </div>
       </div>
-      <div style="font-weight:900;font-size:24px;margin-bottom:12px;color:var(--text)">月額費用</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--accent);line-height:1;margin-bottom:4px">¥2,980</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:16px">/ 月（税込）</div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.9">
-        顧客管理・単価登録・見積書・請求書作成<br>スマホひとつで完結するシンプルなプラン
-      </p>
-      <div style="margin-top:20px;padding:12px 16px;background:var(--accent2);border-radius:6px;font-size:12px;color:var(--muted);line-height:1.8">
-        最初の30日間は無料でお試しいただけます。<br>クレジットカード不要・自動課金なし。
-      </div>
+      <p class="circle-desc">顧客管理・単価登録・見積書・請求書作成<br>スマホひとつで完結するシンプルなプラン</p>
+      <div class="circle-note">最初の30日間は無料でお試しいただけます。<br>クレジットカード不要・自動課金なし。</div>
     </div>
-
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="sec-eye fu">月額プラン</div>
-  <h2 class="sec-title fu d1">月<span style="color:var(--accent)">1件</span>余計に取れれば、<br>それ以上の価値がある。</h2>
-  <div class="plan-grid fu d2">
-    <!-- スタンダード -->
-    <div class="plan-card active">
-      <div class="plan-badge">STANDARD</div>
-      <p class="plan-sub">顧客登録・単価登録・見積作成・請求書作成の4機能に特化したプランです。</p>
-      <div class="plan-name">スタンダード</div>
-      <div class="plan-price">¥2,980</div>
-      <div class="plan-unit">/ 月（税込）</div>
-      <ul class="plan-feats">
-        <li>顧客管理</li>
-        <li>単価登録（品目マスタ）</li>
-        <li>見積書の作成・PDF出力</li>
-        <li>請求書の作成・PDF出力</li>
+<!-- PLAN CAROUSEL -->
+<section class="plan-section" style="background:var(--bg)">
+  <div class="carousel-track" id="plan-carousel">
+    <div class="c-card" style="border:2px solid var(--accent)">
+      <div style="font-size:10px;font-weight:700;letter-spacing:0.2em;padding:3px 10px;border-radius:4px;background:var(--accent2);color:var(--accent);margin-bottom:10px;width:fit-content">STANDARD</div>
+      <p style="font-size:11px;color:var(--gray);margin-bottom:12px;line-height:1.7">顧客登録・単価登録・見積作成・請求書作成の4機能に特化したプランです。</p>
+      <div style="font-weight:900;font-size:17px;margin-bottom:3px">スタンダード</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--accent);line-height:1;margin-bottom:2px">¥2,980</div>
+      <div style="font-size:11px;color:var(--gray);margin-bottom:18px">/ 月（税込）</div>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+        <li style="font-size:13px;display:flex;gap:7px;color:var(--black)"><span style="color:var(--accent);font-weight:700;flex-shrink:0">✓</span>顧客管理</li>
+        <li style="font-size:13px;display:flex;gap:7px;color:var(--black)"><span style="color:var(--accent);font-weight:700;flex-shrink:0">✓</span>単価登録（品目マスタ）</li>
+        <li style="font-size:13px;display:flex;gap:7px;color:var(--black)"><span style="color:var(--accent);font-weight:700;flex-shrink:0">✓</span>見積書の作成・PDF出力</li>
+        <li style="font-size:13px;display:flex;gap:7px;color:var(--black)"><span style="color:var(--accent);font-weight:700;flex-shrink:0">✓</span>請求書の作成・PDF出力</li>
       </ul>
-      <a href="form.html" class="plan-cta">30日間無料で試す</a>
-      <p class="plan-note">クレジットカード不要。無料期間終了後に自動課金はありません。</p>
+      <a href="form.html" style="display:block;text-align:center;padding:12px;font-weight:700;font-size:14px;text-decoration:none;border-radius:980px;background:var(--accent);color:#fff;margin-top:auto">30日間無料で試す</a>
+      <p style="margin-top:8px;font-size:10px;color:var(--gray);text-align:center;line-height:1.6">クレジットカード不要。自動課金なし。</p>
     </div>
-    <!-- PRO coming soon -->
-    <a href="coming-soon.html" class="plan-card coming">
-      <div class="coming-badge"><span class="coming-dot"></span>COMING SOON</div>
-      <div class="plan-name" style="color:var(--text)">PRO</div>
-      <div style="font-size:13px;color:var(--muted);margin:8px 0 24px;line-height:1.7">スタンダードの全機能に加え、現場記録をまるごとデジタル化。</div>
-      <ul class="plan-feats" style="margin-bottom:auto">
-        <li style="color:var(--muted)">スタンダードの全機能</li>
-        <li style="color:var(--muted);opacity:0.6">日報作成 <span style="font-size:10px;background:var(--accent2);color:var(--accent);padding:2px 6px;border-radius:2px;margin-left:4px">準備中</span></li>
-        <li style="color:var(--muted);opacity:0.6">写真台帳 <span style="font-size:10px;background:var(--accent2);color:var(--accent);padding:2px 6px;border-radius:2px;margin-left:4px">準備中</span></li>
+    <a href="coming-soon.html" style="min-width:260px;max-width:260px;flex-shrink:0;background:var(--white);border-radius:18px;border:2px dashed var(--border);padding:24px 22px;display:flex;flex-direction:column;text-decoration:none;box-shadow:0 1px 8px rgba(0,0,0,0.06);margin-right:5vw;transition:border-color 0.2s" onmouseover="this.style.borderColor='#2A7A45'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="display:inline-flex;align-items:center;gap:6px;background:var(--accent2);padding:4px 10px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.15em;color:var(--accent);margin-bottom:10px;width:fit-content">
+        <span style="width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 1.5s infinite"></span>
+        COMING SOON
+      </div>
+      <div style="font-weight:900;font-size:17px;color:var(--black);margin-bottom:8px">PRO</div>
+      <p style="font-size:13px;color:var(--gray);line-height:1.7;margin-bottom:16px;flex:1">スタンダードの全機能に加え、現場記録をまるごとデジタル化。</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+        <li style="font-size:13px;color:var(--gray);display:flex;gap:7px"><span style="color:var(--accent);font-weight:700;flex-shrink:0">✓</span>スタンダードの全機能</li>
+        <li style="font-size:13px;color:var(--gray);display:flex;gap:7px"><span style="color:rgba(42,122,69,0.4);flex-shrink:0">◎</span>日報作成 <span style="font-size:10px;background:var(--accent2);color:var(--accent);padding:1px 6px;border-radius:3px;margin-left:4px">準備中</span></li>
+        <li style="font-size:13px;color:var(--gray);display:flex;gap:7px"><span style="color:rgba(42,122,69,0.4);flex-shrink:0">◎</span>写真台帳 <span style="font-size:10px;background:var(--accent2);color:var(--accent);padding:1px 6px;border-radius:3px;margin-left:4px">準備中</span></li>
       </ul>
-      <div style="margin-top:28px;display:flex;align-items:center;justify-content:space-between">
-        <span style="font-size:12px;color:var(--accent);font-weight:700">詳しく見る →</span>
+      <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:12px;color:var(--accent);font-weight:700">詳しく見る</span>
+        <span style="color:var(--accent)">→</span>
       </div>
     </a>
+  </div>
+  <div class="carousel-hint">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6E6E73" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    スワイプして続きを見る
   </div>
 </section>
 
 <!-- REFERRAL -->
-<section class="referral" id="referral">
-  <div class="sec-eye fu">紹介特典</div>
-  <h2 class="sec-title fu d1"><span style="color:var(--accent)">仲間を紹介</span>すると、<br>翌月が無料に。</h2>
-  <p style="font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:40px;max-width:540px" class="fu d2">新規ユーザーをご紹介いただくと、翌月の月額（¥2,980）が無料になります。最大3ヶ月まで無料になります。</p>
+<section class="referral-section fu" id="referral" style="background:var(--white)">
+  <span class="band-label" style="display:block;margin-bottom:10px">紹介特典</span>
+  <h2 style="font-weight:900;font-size:clamp(28px,5vw,52px);line-height:1.15;letter-spacing:-0.02em;margin-bottom:14px"><span style="color:var(--accent)">仲間を紹介</span>すると、<br>翌月が無料に。</h2>
+  <p style="font-size:15px;color:var(--gray);line-height:1.9;margin-bottom:40px;max-width:500px">新規ユーザーをご紹介いただくと、翌月の月額（¥2,980）が無料になります。最大3ヶ月まで。</p>
   <div class="ref-steps">
-    <div class="ref-card fu"><div class="ref-num">01</div><div class="ref-title">仲間に紹介する</div><p class="ref-desc">知り合いの一人親方にイチバンデシを紹介してください</p></div>
-    <div class="ref-card fu d1"><div class="ref-num">02</div><div class="ref-title">紹介された方が登録</div><p class="ref-desc">紹介された方がイチバンデシに登録・ご利用開始</p></div>
-    <div class="ref-card fu d2"><div class="ref-num">03</div><div class="ref-title">翌月が無料に</div><p class="ref-desc">あなたの翌月の月額¥2,980が無料になります</p></div>
+    <div class="ref-card"><div class="ref-num">01</div><div class="ref-title">仲間に紹介する</div><p class="ref-desc">知り合いの一人親方にイチバンデシを紹介してください</p></div>
+    <div class="ref-card"><div class="ref-num">02</div><div class="ref-title">紹介された方が登録</div><p class="ref-desc">紹介された方がイチバンデシに登録・ご利用開始</p></div>
+    <div class="ref-card"><div class="ref-num">03</div><div class="ref-title">翌月が無料に</div><p class="ref-desc">あなたの翌月の月額¥2,980が無料になります</p></div>
   </div>
-  <div class="ref-box fu">
-    <div style="width:48px;height:48px;background:var(--accent2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+  <div class="ref-summary">
+    <div style="width:44px;height:44px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A7A45" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
     <div>
-      <div style="font-weight:900;font-size:17px;margin-bottom:6px;color:var(--text)">紹介1名で翌月 <span style="color:var(--accent)">¥2,980 → ¥0</span></div>
-      <p style="font-size:13px;color:var(--muted);line-height:1.8">2名紹介で2ヶ月無料、3名紹介で3ヶ月無料。最大3ヶ月まで。</p>
+      <div style="font-weight:900;font-size:16px;margin-bottom:6px">紹介1名で翌月 <span style="color:var(--accent)">¥2,980 → ¥0</span></div>
+      <p style="font-size:13px;color:var(--gray);line-height:1.8">2名紹介で2ヶ月無料、3名紹介で3ヶ月無料。最大3ヶ月まで。</p>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section class="faq">
-  <div class="sec-eye fu">よくある質問</div>
-  <h2 class="sec-title fu d1" style="font-size:clamp(22px,3vw,36px)">気になること、全部答えます。</h2>
+<section class="faq-section" id="faq" style="background:var(--white)">
+  <span class="band-label" style="display:block;margin-bottom:10px;font-size:12px;font-weight:700;color:var(--accent);letter-spacing:0.1em">よくある質問</span>
+  <h2 style="font-weight:900;font-size:clamp(24px,4vw,40px);line-height:1.2;margin-bottom:40px;letter-spacing:-0.01em">気になること、<br>全部答えます。</h2>
   <div class="faq-item fu"><div class="faq-q">パソコンが苦手でも使えますか？</div><div class="faq-a">はい、スマホだけで全ての操作ができます。初期設定代行をご利用いただければ、届いたその日から使えます。</div></div>
   <div class="faq-item fu d1"><div class="faq-q">初期設定代行に必要なものは？</div><div class="faq-a">よく使う単価一覧（ExcelやメモでOK）、顧客情報のリスト、会社のロゴ・印鑑データをお送りいただければ対応します。ない場合もご相談ください。</div></div>
   <div class="faq-item fu d2"><div class="faq-q">30日間の無料期間後はどうなりますか？</div><div class="faq-a">自動的に有料プランへ移行することはありません。トライアル終了後にご自身でプランを選択いただきます。データはそのまま保持されます。</div></div>
   <div class="faq-item fu d3"><div class="faq-q">インボイス制度に対応していますか？</div><div class="faq-a">適格請求書（インボイス）の発行に対応しています。登録番号を設定しておけば、自動で請求書に印字されます。</div></div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section" id="cta">
-  <h2 class="fu">今夜、書類仕事を終わらせよう。</h2>
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2 class="fu">今夜、書類仕事を<br><span>終わらせよう。</span></h2>
   <p class="fu d1">初期費用ゼロ・月額¥2,980・30日間無料トライアル。<br>クレジットカード不要。いつでも解約OK。</p>
-  <a href="form.html" class="btn-main-white fu d2">無料で申し込む（30日間）</a>
+  <a href="form.html" class="btn-primary-lg fu d2">無料で申し込む（30日間）</a>
 </section>
 
 <footer>
@@ -608,6 +541,20 @@
 </footer>
 
 <script>
+  // carousel drag
+  function initCarousel(id) {
+    const el = document.getElementById(id);
+    if(!el) return;
+    let down=false, sx, sl;
+    el.addEventListener('mousedown', e => { down=true; sx=e.pageX-el.offsetLeft; sl=el.scrollLeft; el.style.cursor='grabbing'; });
+    el.addEventListener('mouseleave', () => { down=false; el.style.cursor='grab'; });
+    el.addEventListener('mouseup', () => { down=false; el.style.cursor='grab'; });
+    el.addEventListener('mousemove', e => { if(!down) return; e.preventDefault(); el.scrollLeft=sl-(e.pageX-el.offsetLeft-sx)*1.5; });
+  }
+  initCarousel('pain-carousel');
+  initCarousel('plan-carousel');
+
+  // fade in
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('vis'); });
   }, { threshold: 0.08 });
